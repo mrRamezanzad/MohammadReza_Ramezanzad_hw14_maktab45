@@ -1,43 +1,52 @@
 @import url("/css/bootstrap-icons.css");
 
-* {
-    padding: 0;
-    margin: 0;
+nav {
 
-}
+    .navbar-brand {
+        padding: 0;
+        font-size: 1.5rem;
+        color: violet !important;
+        font-family: monospace;
 
-:root {
-    font-size: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+        &::first-letter {
+            color: black !important;
+            font-size: 2rem;
 
-.container {
-    width: 100%;
-    height: 100vh;
-}
+        }
 
-nav{
-    display: flex;
-    flex-direction: row-reverse;
-    // justify-content: flex-end;
-    width: 100%;
-    height: auto;
-    font-size: 1.5rem;
-    box-shadow: 0 3px 10px #3e3e3e;
-    border-radius: 3px;
-    ul{
-        display: flex;
-        flex-direction: row-reverse;
-        li{
-            display: inline-block;
-            padding: 10px 20px;
-            a{
-                text-decoration: none;
-                color: black;
+        &:hover {
+            color: white !important;
+            text-shadow: 0 0 15px purple;
+            font-weight: 900;
+            font-family: cursive;
+            transition: all .1s steps(100);
+
+            &::first-letter {
+                color: violet !important;
             }
         }
-        li, i{
-            font-size: 1.6rem;
+    }
+
+    .nav-item {
+
+        margin-left: 10px;
+
+        &:hover {
+
+            .nav-link,
+            span {
+                color: purple !important;
+            }
+        }
+
+        span.bi {
+            // margin-top: 10px;
+            display: inline-block !important;
+            font-size: 1.3rem;
+        }
+
+        .nav-link {
+            display: inline-block;
         }
     }
 }

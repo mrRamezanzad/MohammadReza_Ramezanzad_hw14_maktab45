@@ -6,7 +6,9 @@ router.get("/", (req, res) => {
     res.redirect("/home")
 })
 router.get("/home", (req, res) => {
-    res.render(path.join(__dirname, "../views/index.ejs"))
+    res.render(path.join(__dirname, "../views/index.ejs"), {
+        DB: req.DB
+    })
 })
 router.get("/about", (req, res) => {
     res.render(path.join(__dirname, "../views/about.ejs"))

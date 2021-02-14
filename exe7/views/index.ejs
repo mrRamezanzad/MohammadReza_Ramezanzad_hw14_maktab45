@@ -1,7 +1,9 @@
 <%- include("./partials/header") %>
-    
 
-    
-        
+    <div class="container">
+        <%DB.forEach(product=>{ %>
+            <%= product.id %>
+                <% }) %>
+    </div>
 
-<%- include("./partials/footer") %>
+    <%- include("./partials/footer") %>
