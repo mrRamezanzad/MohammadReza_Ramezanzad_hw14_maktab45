@@ -6,13 +6,13 @@ router.get("/", (req, res) => {
     res.redirect("/home")
 })
 router.get("/home", (req, res) => {
-    res.render("index")
+    res.render(path.join(__dirname, "../views/index.ejs"))
 })
 router.get("/about", (req, res) => {
-    res.render("about")
+    res.render(path.join(__dirname, "../views/about.ejs"))
 })
 router.get("/contact", (req, res) => {
-    res.render("contact")
+    res.render(path.join(__dirname, "../views/contact.ejs"))
 })
 
 module.exports = router

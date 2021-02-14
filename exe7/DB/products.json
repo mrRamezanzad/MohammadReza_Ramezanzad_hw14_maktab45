@@ -1,0 +1,22 @@
+[{
+    "id": 1,
+    "productName": "کفش نایکی مدل 87",
+    "productColor": "خاکستری",
+    "type": "چرم مصنوعی",
+    "price": 299000,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5Xy76c0gehyYeUCmTSq8nYQ-UOHhBmr10Q&usqp=CAU"
+}, {
+    "id": 2,
+    "productName": "کفش نایکی مدل 87",
+    "productColor": "خاکستری",
+    "type": "چرم مصنوعی",
+    "price": 299000,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5Xy76c0gehyYeUCmTSq8nYQ-UOHhBmr10Q&usqp=CAU"
+}, {
+    "id": 3,
+    "productName": "کفش نایکی مدل 87",
+    "productColor": "خاکستری",
+    "type": "چرم مصنوعی",
+    "price": 299000,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5Xy76c0gehyYeUCmTSq8nYQ-UOHhBmr10Q&usqp=CAU"
+}]

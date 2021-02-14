@@ -1,3 +1,4 @@
+@import url("/css/bootstrap-icons.css");
 * {
   padding: 0;
   margin: 0;
@@ -15,7 +16,7 @@
 
 nav {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row-reverse;
   width: 100%;
   height: auto;
   font-size: 1.5rem;
@@ -23,14 +24,17 @@ nav {
   border-radius: 3px;
 }
 nav ul {
-  display: float;
-  float: right;
+  display: flex;
+  flex-direction: row-reverse;
 }
 nav ul li {
   display: inline-block;
-  padding: 20px;
+  padding: 10px 20px;
 }
 nav ul li a {
   text-decoration: none;
   color: black;
+}
+nav ul li, nav ul i {
+  font-size: 1.6rem;
 }

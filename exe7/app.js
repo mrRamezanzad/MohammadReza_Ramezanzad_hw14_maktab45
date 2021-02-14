@@ -6,7 +6,7 @@ const express = require("express"),
     pages = require(path.join(__dirname, "/routes/pages.js"))
 
 app.set("view engine", "ejs")
-app.use(express.static("public"))
+app.use(express.static(path.join(__dirname, "public")))
 app.use("/", pages)
 app.use("/product", product)
 
