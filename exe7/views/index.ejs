@@ -1,9 +1,28 @@
 <%- include("./partials/header") %>
 
     <div class="container">
-        <%DB.forEach(product=>{ %>
-            <%= product.id %>
-                <% }) %>
+        <div class="row gx-3">
+            <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                <div class="card shadow" style="width: 18rem;">
+                    <img src="https://assets.ajio.com/medias/sys_master/root/had/h08/15512133009438/-1117Wx1400H-450135463-platinum-MODEL.jpg"
+                        class="card-img-top" alt="nike shoe">
+                    <div class="card-body pb-2">
+                        <h5 class="card-title text-center mb-5"> کفش نایکی مدل 87</h5>
+                        <p class="card-text text-end">رنگ: <span class="card-text-value me-5"> خاکستری</span></p>
+                        <p class="card-text text-end">سایز: <span class="card-text-value me-5"> 42</span></p>
+                        <p class="card-text text-end">جنس: <span class="card-text-value me-5"> چرم مصنوعی</span></p>
+                        <div class="mt-5 d-flex justify-content-between">
+                            <a href="#" class="btn btn-buy text-white shadow d-inline">خرید</a>
+                            <span class="">
+                                تومان299,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script type="text/javascript">
+        var db = <% - JSON.stringify(DB) %>
 
+    </script>
     <%- include("./partials/footer") %>
