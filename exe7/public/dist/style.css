@@ -36,6 +36,7 @@ nav .nav-item .nav-link {
 }
 
 .card {
+  width: 90%;
   border-radius: 10px;
 }
 .card p {
