@@ -5,6 +5,7 @@ nav .navbar-brand {
   font-size: 1.5rem;
   color: violet !important;
   font-family: monospace;
+  width: 300px;
 }
 nav .navbar-brand::first-letter {
   color: black !important;

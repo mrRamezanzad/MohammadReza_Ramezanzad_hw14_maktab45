@@ -7,7 +7,7 @@ const express = require("express"),
     DB = require(path.join(__dirname, "/DB/products.json"))
 
 // importing DB
-console.log(DB);
+// console.log(DB);
 app.use("/", (req, res, next) => {
     req.DB = DB
     next()

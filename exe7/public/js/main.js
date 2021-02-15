@@ -28,20 +28,50 @@ function renderCards(products) {
 }
 renderCards(db)
 
-// card shadow hover
-$(".btn-buy").hover(function () {
-    // over
-    console.log("hovered btn");
-    $(this).addClass("shadow");
-}, function () {
-    // out
-    $(this).removeClass("shadow");
+// search-bar render
+$("[type='search']").keyup(function (e) {
+    let searchQuery = $(this).val().trim().toLowerCase()
+    searchProducts(searchQuery)
 });
-$(".card").hover(function () {
+
+// search functionality
+function searchProducts(searchQuery) {
+
+    if (searchQuery === "") return renderCards(db)
+    // console.log(db);
+
+    // solution-1 simple search by includes function
+    // let filteredProducts = db.filter(el => {
+    //     return el["id"] == parseInt(searchQuery) || el["name"].includes(searchQuery) ||
+    //         el["color"].includes(searchQuery) || el["size"] == parseInt(searchQuery) ||
+    //         el["type"].includes(searchQuery) || el["id"] == parseInt(searchQuery) ||
+    //         el["image"].includes(searchQuery)
+
+    // })
+
+    // solution-2 improved search by includes function
+    let filteredProducts = db.filter(el => {
+        let searchSource = ""
+        // console.log(searchSource.concat(el["id"], el["name"], el["color"], el["size"], el["type"], el["id"], el["image"]).toLowerCase());
+        return searchSource.concat(el["id"], el["name"], el["color"], el["size"], el["type"], el["id"], el["image"], el["price"]).toLowerCase().includes(searchQuery)
+
+    })
+
+    // solution-3  regex
+
+    // console.log(filteredProducts);
+    renderCards(filteredProducts)
+}
+
+// card hover shadow
+$("body").on("mouseover mouseout", ".btn-buy", function () {
     // over
-    console.log("hovered card");
-    $(this).addClass("shadow");
-}, function () {
-    // out
-    $(this).removeClass("shadow");
+    $(this).toggleClass("shadow");
+});
+
+// btn hover shadow 
+$("body").on("mouseover mouseout", ".card", function () {
+    // over
+    console.log("hover");
+    $(this).toggleClass("shadow");
 });
