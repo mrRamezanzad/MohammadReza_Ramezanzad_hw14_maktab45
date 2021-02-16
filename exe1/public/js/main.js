@@ -70,8 +70,21 @@ $("body").on("mouseover mouseout", ".btn-buy", function () {
 });
 
 // btn hover shadow 
-$("body").on("mouseover mouseout", ".card", function () {
+$(document).on("mouseover mouseout", ".card", function () {
     // over
-    console.log("hover");
     $(this).toggleClass("shadow");
 });
+
+// go to search-bar action
+$(document).on("keyup", function (e) {
+    console.log(e.key);
+    if (e.key === "/") {
+        $("[type='search']").focus()
+
+    // $("[type='search']").toggleClass("shadow");
+    }
+    if (e.key === "Escape") {
+        $("[type='search']").blur()
+    // $("[type='search']").toggleClass("shadow");
+    }
+})
