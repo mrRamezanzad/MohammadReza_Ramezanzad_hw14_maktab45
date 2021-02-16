@@ -18,10 +18,9 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use("/", pages)
 app.use("/product", product)
 
-
-
+// 404 page handler
 app.get("*", (req, res) => {
-    res.send("404")
+    res.render(path.join(__dirname, "/views/404"))
 })
 
 app.listen(80, () => {
