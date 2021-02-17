@@ -2,16 +2,14 @@ const express = require("express"),
     router = express.Router(),
     path = require("path")
 
-router.get("/", (req, res) => {
-    res.render(path.join(__dirname, "../views/authorization.ejs"))
+router.get("/login", (req, res) => {
+    res.render(path.join(__dirname, "../views/login.ejs"))
 })
-router.post("/:type", (req, res) => {
-    // res.render(path.join(__dirname, "../views/authorization.ejs"))
-    res.send(req.params.type)
+
+router.get("/signup", (req, res) => {
+    res.render(path.join(__dirname, "../views/signup.ejs"))
+
 })
-router.post("/:type", (req, res) => {
-    // res.render(path.join(__dirname, "../views/authorization.ejs"))
-    res.send(req.params.type)
-})
+
 
 module.exports = router

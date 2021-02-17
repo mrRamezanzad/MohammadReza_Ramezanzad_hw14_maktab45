@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
 })
 
 //using routes 
-app.use("/authorization", authorizationRoutes)
+app.use("/", authorizationRoutes)
 
 app.get("*", (req, res) => {
     res.render(path.join(__dirname, "/views/404"))

@@ -10,3 +10,6 @@ label {
     cursor: pointer;
 }
 
+.authorization-message{
+    margin-top: 30px !important;
+}
