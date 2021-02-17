@@ -15,19 +15,19 @@
     <div class="bg-gray-50 w-full h-screen flex flex-col items-center justify-center">
 
         <!-- login form -->
-        <div id="login-form" class="form-wrapper bg-white px-16 py-10 rounded shadow-inner-2xl hover:shadow-lg">
-            <form action="/authorization/login" method="POST" class="flex flex-col space-y-0 ">
+        <div id="login-form" class="form-wrapper bg-white px-12 py-10 rounded shadow-inner-2xl hover:shadow-lg">
+            <form action="/login" method="POST" class="flex flex-col space-y-0 ">
                 <label for="username">نام کاربری: </label>
                 <input id="username-value" type="text" name="username" placeholder="username"
                     class="shadow-inner p-2 placeholder-gray-300 focus:placeholder-gray-500">
-                <p class="error-text m-0 transparent-100 text-red-500">لطفا این گزینه را پر کنید</p>
-                <label for="username">رمز عبور: </label>
+                <p class="error-text m-0 opacity-0 text-red-500 ">لطفا این گزینه را پر کنید</p>
+                <label for="password">رمز عبور: </label>
                 <input id="password-value" type="text" name="password" placeholder="password"
                     class="shadow-inner p-2 placeholder-gray-300 focus:placeholder-gray-500">
-                <p class="error-text m-0 mb-5 transparent-100 text-red-500">لطفا این گزینه را پر کنید</p>
+                <p class="error-text m-0 mb-5 opacity-0 text-red-500 ">لطفا این گزینه را پر کنید</p>
 
                 <button id="login-button" type="submit" class="bg-indigo-600 text-white p-2 rounded-lg">ورود</button>
-                <p class="authorization-message">کاربری با این مشخصات وجود ندارد</p>
+                <p class="response-message opacity-100"></p>
             </form>
         </div>
 
