@@ -1,0 +1,12 @@
+button[type="submit"] {
+    margin-top: 15px !important;
+}
+
+label {
+    margin-bottom: 5px !important;
+}
+
+.btn-show-signup, .btn-show-login{
+    cursor: pointer;
+}
+
