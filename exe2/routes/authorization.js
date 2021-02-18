@@ -1,8 +1,9 @@
 const express = require("express"),
     router = express.Router(),
     path = require("path"),
-    fs = require("fs"),
-    users = require(path.join(__dirname, "../DB/users.json"))
+    fs = require("fs")
+
+// let users = fs.readFileSync(path.join(__dirname, "../DB/users.jso, "utf8"n"))
 
 
 // ============= login page routes
@@ -11,10 +12,11 @@ router.get("/login", (req, res) => {
 })
 
 router.post("/login", (req, res) => {
+    let users = JSON.parse(fs.readFileSync(path.join(__dirname, "../DB/users.json"), "utf8"))
     let userInfo = req.body
     if (loginUser(userInfo)) {
         let userIndex = users.findIndex(user => user.username === userInfo.username)
-        users[userIndex].isLoggedIn = true
+        users[userIndex].isLoggedIn = "true"
         fs.writeFile(path.join(__dirname, "../DB/users.json"), JSON.stringify(users), (err) => {
             if (err) console.log(err);
             res.status(200).json(`{"msg": "خوش آمدید!"}`)
@@ -25,6 +27,7 @@ router.post("/login", (req, res) => {
 
 // login functionality
 function loginUser(userInfo) {
+    let users = JSON.parse(fs.readFileSync(path.join(__dirname, "../DB/users.json"), "utf8"))
     let targetUser = users.find(user => user.username === userInfo.username && user.password === userInfo.password)
     return targetUser === undefined ? false : true
 }
@@ -35,8 +38,9 @@ router.get("/signup", (req, res) => {
 })
 
 router.post("/signup", (req, res) => {
+    let users = JSON.parse(fs.readFileSync(path.join(__dirname, "../DB/users.json"), "utf8"))
     let newUserInfo = req.body
-    // console.log(req.body);
+    // console.log("signup route", createUser(newUserInfo));
     if (createUser(newUserInfo)) {
         res.status(201).json({
             "msg": "اکانت شما با موفقیت ساخته شد."
@@ -50,14 +54,22 @@ router.post("/signup", (req, res) => {
 
 // user creation functionality
 function createUser(newUserInfo) {
+    let users = JSON.parse(fs.readFileSync(path.join(__dirname, "../DB/users.json"), "utf8"))
     newUserInfo.id = generateId()
     console.log("full new User: ", newUserInfo);
-
-    return availableNewUser(newUserInfo) ? true : false
+    console.log("available", availableNewUser(newUserInfo));
+    if (availableNewUser(newUserInfo)) {
+        users.push(newUserInfo)
+        users = fs.writeFileSync(path.join(__dirname, "../DB/users.json"), JSON.stringify(users))
+        return true
+    } else return false
 }
 
 function availableNewUser(newUserInfo) {
-
+    let users = JSON.parse(fs.readFileSync(path.join(__dirname, "../DB/users.json"), "utf8"))
+    // console.log("check available", users.findIndex(user => user.id === newUserInfo.id || user.username === newUserInfo.username));
+    return users.findIndex(user => user.id === newUserInfo.id || user.username === newUserInfo.username) === -1 ?
+        true : false
 }
 
 function generateId() {
