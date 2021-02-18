@@ -8,7 +8,7 @@
     height: 550px;
 }
 
-button[type="submit"] {
+button {
     margin-top: 15px !important;
 }
 

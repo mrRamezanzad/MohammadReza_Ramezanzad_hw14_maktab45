@@ -12,14 +12,14 @@
 
 <body>
 
-    <div class="bg-gray-50 w-full h-screen flex flex-col items-center justify-center">
+    <div class="bg-gray-50 w-screen h-screen flex flex-col items-center justify-center">
 
         <!-- logout button -->
         <button id="logout-button" type="button"
             class="text-purple-600 text-3xl hover:text-red-500 w-5 h-5 flex justify-center items-center mb-2 self-center   rounded rounded-full">X
         </button>
-        <div id="edit-form" class="edit-form-wrapper  px-10 py-10 rounded shadow-inner-2xl  ">
-            
+        <div id="edit-form" class="edit-form-wrapper  px-10 py-5 rounded shadow-inner-2xl  ">
+
             <!-- show and edit form -->
             <form action="/edit" method="POST" class="flex flex-col space-y-0 ">
 
@@ -47,6 +47,12 @@
                 <p class="error-text m-0 mb-5 opacity-0 text-red-500">لطفا این گزینه را پر کنید</p>
                 <button id="edit-button" type="button" class="bg-blue-600 text-white p-2 rounded-lg">ویرایش
                     اطلاعات</button>
+                <div class="edit-buttons-wrapper flex flex-row w-full h-50">
+                    <button id="save-button" type="button" class=" hidden bg-green-600 text-white p-2 rounded-lg">ذخیره
+                        تغییرات</button>
+                    <button id="exit-button" type="button"
+                        class="hidden bg-black text-white p-2 mr-2 rounded-lg">انصراف</button>
+                </div>
                 <p class="response-message"></p>
             </form>
         </div>

@@ -85,14 +85,19 @@ router.get("/profile/:id", (req, res) => {
             return parseInt(user.id) === parseInt(req.params.id)
         })
 
-    if (isLoggedIn(targetUser) && targetUser) {
+    if (targetUser === undefined) {
 
-        res.render("profile", {
+        res.redirect("/login")
+
+    } else if (isLoggedIn(targetUser))
+        res.render(path.join(__dirname, "../views/profile.ejs"), {
             user: targetUser
         })
+    else {
 
-    } else
         res.redirect("/login")
+    }
+
 })
 
 // check if the user is logged in to enter the profile
@@ -128,10 +133,47 @@ function logoutUser(id) {
 
 
 // update user info
-router.post("profile/edit:id", (req, res) => {
-    console.log("got request for changing user");
-    req.status(200)
+router.post("/edit/:id", (req, res) => {
+    let users = JSON.parse(fs.readFileSync(path.join(__dirname, "../DB/users.json"), "utf8")),
+        userIndex = users.findIndex(user => parseInt(user.id) === parseInt(req.params.id))
+    editedUser = req.body
+    if (isLoggedIn(users[userIndex])) {
+        if (editUser(userIndex, editedUser, users)) {
+
+            res.status(200).json({
+                "msg": "اطلاعات با موفقیت به روز رسانی شد!",
+                "location": "/login"
+            })
+        } else {
+
+            res.status(200).json({
+                "msg": "اطلاعات با موفقیت به روز رسانی شد!"
+            })
+        }
+
+    } else {
+
+        res.status(401).json({
+            "msg": "ابتدا وارد پروفایل خود شوید",
+            "location": "/login"
+        })
+    }
 })
 
+// edit user in DB
+function editUser(userIndex, editedUser) {
+    let users = JSON.parse(fs.readFileSync(path.join(__dirname, "../DB/users.json"), "utf8"))
+
+    if (users[userIndex].password !== editedUser.password) {
+        users[userIndex] = editedUser
+        users[userIndex].isLoggedIn = "false"
+        fs.writeFileSync(path.join(__dirname, "../DB/users.json"), JSON.stringify(users))
+        return true
+    }
+    users[userIndex] = editedUser
+
+    fs.writeFileSync(path.join(__dirname, "../DB/users.json"), JSON.stringify(users))
+    return false
+}
 
 module.exports = router

@@ -34,11 +34,25 @@ function logoutUser(id) {
 // edit event handler
 $("#edit-button").on("click", function (e) {
     e.preventDefault()
-    editInfo = getInputs()
-    editUser()
-    console.log("clicked edit");
+    $("input, select").not("[name='user-id']").removeAttr("disabled")
+    $("#edit-button").addClass("hidden").siblings(".edit-buttons-wrapper").children("button").removeClass("hidden")
+
 });
 
+// exit-edit button handler
+$("#exit-button").on("click", (e) => {
+    $("input, select").attr({
+        disabled: ""
+    })
+    $("#edit-button").removeClass("hidden").siblings(".edit-buttons-wrapper").children("button").addClass("hidden")
+    console.log("exit edit");
+})
+
+// save button handler
+$("#save-button").on("click", (e) => {
+    editInfo = getInputs()
+    editUser()
+})
 
 // edit functionality
 function editUser() {
@@ -48,21 +62,27 @@ function editUser() {
     if (typeof editInfo === "object") {
         $.ajax({
             type: "Post",
-            url: "/edit",
+            url: `/edit/${editInfo.id}`,
             data: editInfo,
             dataType: "json",
             success: function (response) {
-                console.log("success: ", response.msg);
+                console.log("success: ", response);
                 console.log($(".response-message").text(response.msg))
+                if (response.location) {
 
-                setTimeout(() => {
-                    window.location.replace("/login")
-                }, 1500)
+                    setTimeout(() => {
+                        window.location.replace("/login")
+                    }, 1500)
+                }
             },
             error: (err) => {
                 let msg = err.responseJSON.msg
+                console.log("error: ", err);
                 console.log("error: ", msg);
                 console.log($(".response-message").text(msg))
+                setTimeout(() => {
+                    window.location.replace("/login")
+                }, 1500)
             }
         })
     }
@@ -77,7 +97,7 @@ function getInputs() {
             password: $(`[name="password"]`).val().trim(),
             email: $(`[name="email"]`).val().trim(),
             gender: $(`[name='gender']`).val().trim(),
-            isLoggedIn: "false"
+            isLoggedIn: "true"
         }
     }
 }
@@ -85,10 +105,10 @@ function getInputs() {
 function validateInputs() {
 
     // borders reset
-    $(`[name="username"]`).removeClass('border border-red-500')
-    $(`[name="password"]`).removeClass('border border-red-500')
-    $(`[name="email"]`).removeClass('border border-red-500')
-    $(`[name="gender"]`).removeClass('border border-red-500')
+    $(`[name="username"]`).removeClass(' border-red-500')
+    $(`[name="password"]`).removeClass(' border-red-500')
+    $(`[name="email"]`).removeClass(' border-red-500')
+    $(`[name="gender"]`).removeClass(' border-red-500')
 
     // labels reset
     $("[for='username']").removeClass('text-red-500')
@@ -102,23 +122,23 @@ function validateInputs() {
     $(`[name="gender"]`).removeClass('text-red-500')
 
     if ($(`[name="username"]`).val().trim() === "") {
-        $(`[name="username"]`).addClass('border border-red-500')
+        $(`[name="username"]`).addClass('border-red-500')
         $("[name='username'] + .error-text").addClass('opacity-100')
         $("[for='username']").addClass('text-red-500')
     }
     if ($(`[name="password"]`).val().trim() === "") {
-        $(`[name="password"]`).addClass('border border-red-500')
+        $(`[name="password"]`).addClass('border-red-500')
         $("[name='password'] + .error-text").addClass('opacity-100')
         $("[for='password']").addClass('text-red-500')
     }
     if ($(`[name="email"]`).val().trim() === "") {
-        $(`[name="email"]`).addClass('border border-red-500')
+        $(`[name="email"]`).addClass('border-red-500')
         $("[name='email'] + .error-text").addClass('opacity-100')
         $("[for='email']").addClass('text-red-500')
     }
     if ($(`[name="gender"]`).val().trim() === "") {
         $(`[name="gender"]`).addClass('text-red-500')
-        $(`[name="gender"]`).addClass('border border-red-500')
+        $(`[name="gender"]`).addClass('border-red-500')
     }
 
 

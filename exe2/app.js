@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.get("/", (req, res) => {
-    res.send("started exercise")
+    res.redirect("login")
 })
 
 //using routes 
