@@ -3,9 +3,6 @@ const express = require("express"),
     path = require("path"),
     fs = require("fs")
 
-// let users = fs.readFileSync(path.join(__dirname, "../DB/users.jso, "utf8"n"))
-
-
 // ============= login page routes
 router.get("/login", (req, res) => {
     res.render(path.join(__dirname, "../views/login.ejs"))
@@ -107,7 +104,6 @@ function isLoggedIn(user) {
 
 // logout 
 router.post("/logout/:id", (req, res) => {
-    console.log(logoutUser(req.params.id))
     res.status(200).json({
         "msg": `به امید دیدار!`
     })
