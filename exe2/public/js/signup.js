@@ -39,10 +39,10 @@ function getInputs() {
 
     if (validateInputs()) {
         return {
-            username: $(`[name="username"]`).val(),
-            password: $(`[name="password"]`).val(),
-            email: $(`[name="email"]`).val(),
-            gender: $(`[name='gender']`).val(),
+            username: $(`[name="username"]`).val().trim(),
+            password: $(`[name="password"]`).val().trim(),
+            email: $(`[name="email"]`).val().trim(),
+            gender: $(`[name='gender']`).val().trim(),
             isLoggedIn: "false"
         }
     }

@@ -65,6 +65,7 @@ function createUser(newUserInfo) {
     } else return false
 }
 
+// check if the id and username is unique
 function availableNewUser(newUserInfo) {
     let users = JSON.parse(fs.readFileSync(path.join(__dirname, "../DB/users.json"), "utf8"))
     // console.log("check available", users.findIndex(user => user.id === newUserInfo.id || user.username === newUserInfo.username));
@@ -72,19 +73,64 @@ function availableNewUser(newUserInfo) {
         true : false
 }
 
+// generate random id
 function generateId() {
     return (Math.random() * Math.random() * 1000000000).toFixed()
 }
 
+// profile routers
 router.get("/profile/:id", (req, res) => {
     let users = JSON.parse(fs.readFileSync(path.join(__dirname, "../DB/users.json"), "utf8")),
         targetUser = users.find(user => {
             return parseInt(user.id) === parseInt(req.params.id)
         })
 
-    res.render("profile", {
-        user: targetUser
+    if (isLoggedIn(targetUser) && targetUser) {
+
+        res.render("profile", {
+            user: targetUser
+        })
+
+    } else
+        res.redirect("/login")
+})
+
+// check if the user is logged in to enter the profile
+function isLoggedIn(user) {
+    return user.isLoggedIn === "true" ? true : false
+}
+
+// logout 
+router.post("/logout/:id", (req, res) => {
+    console.log(logoutUser(req.params.id))
+    res.status(200).json({
+        "msg": `به امید دیدار!`
     })
+})
+
+// logout functionality
+function logoutUser(id) {
+    let users = JSON.parse(fs.readFileSync(path.join(__dirname, "../DB/users.json"), "utf8")),
+        userIndex = users.findIndex(user => parseInt(user.id) === parseInt(id))
+    console.log("targetUser:", users[userIndex]);
+    users[userIndex].isLoggedIn = "false"
+    try {
+
+        fs.writeFileSync(path.join(__dirname, "../DB/users.json"), JSON.stringify(users))
+        return true
+
+    } catch (err) {
+        console.log(err);
+        return false
+    }
+
+}
+
+
+// update user info
+router.post("profile/edit:id", (req, res) => {
+    console.log("got request for changing user");
+    req.status(200)
 })
 
 

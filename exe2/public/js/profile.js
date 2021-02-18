@@ -1,22 +1,55 @@
-// signup event handler
-$("#signup-button").on("click", function (e) {
+let editInfo
+
+// logout event handler
+$("#logout-button").on("click", function (e) {
+    editInfo = getInputs()
+    console.log(editInfo.id)
+    logoutUser(editInfo.id)
+    console.log("clicked logout");
+    $.ajax({
+        type: "POST",
+        url: `/logout/${editInfo.id}`,
+        data: "data",
+        dataType: "json",
+        success: function (response) {
+            console.log("success", response);
+            console.log($(".response-message").text(response.msg))
+
+            setTimeout(() => {
+                window.location.replace("/login")
+            }, 1500)
+
+        },
+        error: (err) => {
+            console.log("error", err);
+        }
+    });
+});
+
+// logout functionality
+function logoutUser(id) {
+    console.log("logged out successfully");
+}
+
+// edit event handler
+$("#edit-button").on("click", function (e) {
     e.preventDefault()
-    signupUser()
-    console.log("clicked signup");
+    editInfo = getInputs()
+    editUser()
+    console.log("clicked edit");
 });
 
 
-// signup functionality
-function signupUser() {
+// edit functionality
+function editUser() {
 
-    let signupInfo = getInputs()
-    console.log(signupInfo);
+    console.log(editInfo);
 
-    if (typeof signupInfo === "object") {
+    if (typeof editInfo === "object") {
         $.ajax({
             type: "Post",
-            url: "/signup",
-            data: signupInfo,
+            url: "/edit",
+            data: editInfo,
             dataType: "json",
             success: function (response) {
                 console.log("success: ", response.msg);
@@ -39,10 +72,11 @@ function getInputs() {
 
     if (validateInputs()) {
         return {
-            username: $(`[name="username"]`).val(),
-            password: $(`[name="password"]`).val(),
-            email: $(`[name="email"]`).val(),
-            gender: $(`[name='gender']`).val(),
+            id: $(`[name="user-id"]`).val().trim(),
+            username: $(`[name="username"]`).val().trim(),
+            password: $(`[name="password"]`).val().trim(),
+            email: $(`[name="email"]`).val().trim(),
+            gender: $(`[name='gender']`).val().trim(),
             isLoggedIn: "false"
         }
     }
