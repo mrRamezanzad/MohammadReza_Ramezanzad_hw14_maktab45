@@ -19,7 +19,7 @@ router.post("/login", (req, res) => {
         users[userIndex].isLoggedIn = "true"
         fs.writeFile(path.join(__dirname, "../DB/users.json"), JSON.stringify(users), (err) => {
             if (err) console.log(err);
-            res.status(200).json(`{"msg": "خوش آمدید!"}`)
+            res.status(200).json(`{"msg": "خوش آمدید!", "uid": ${users[userIndex].id}}`)
         })
 
     } else res.status(400).json(`{"msg": "کاربری با این مشخصات یافت نشد!"}`)
@@ -76,10 +76,15 @@ function generateId() {
     return (Math.random() * Math.random() * 1000000000).toFixed()
 }
 
-router.get("/profile", (req, res) => {
-    // let newUserInfo = JSON.parse(req.body)
-    // createUser(newUserInfo)
-    res.render("profile")
+router.get("/profile/:id", (req, res) => {
+    let users = JSON.parse(fs.readFileSync(path.join(__dirname, "../DB/users.json"), "utf8")),
+        targetUser = users.find(user => {
+            return parseInt(user.id) === parseInt(req.params.id)
+        })
+
+    res.render("profile", {
+        user: targetUser
+    })
 })
 
 

@@ -23,7 +23,7 @@ function loginUser() {
                 window.localStorage.setItem("username", [loginInfo.username])
 
                 setTimeout(() => {
-                    window.location.replace("/profile")
+                    window.location.replace(`/profile/${response.uid}`)
                 }, 1500)
             },
             error: (err) => {
