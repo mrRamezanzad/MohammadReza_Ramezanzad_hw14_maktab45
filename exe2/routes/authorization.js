@@ -79,7 +79,7 @@ function generateId() {
 router.get("/profile", (req, res) => {
     // let newUserInfo = JSON.parse(req.body)
     // createUser(newUserInfo)
-    res.send("profile page")
+    res.render("profile")
 })
 
 

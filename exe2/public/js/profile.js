@@ -51,10 +51,10 @@ function getInputs() {
 function validateInputs() {
 
     // borders reset
-    $(`[name="username"]`).removeClass('border-red-500')
-    $(`[name="password"]`).removeClass('border-red-500')
-    $(`[name="email"]`).removeClass('border-red-500')
-    $(`[name="gender"]`).removeClass('border-red-500')
+    $(`[name="username"]`).removeClass('border border-red-500')
+    $(`[name="password"]`).removeClass('border border-red-500')
+    $(`[name="email"]`).removeClass('border border-red-500')
+    $(`[name="gender"]`).removeClass('border border-red-500')
 
     // labels reset
     $("[for='username']").removeClass('text-red-500')
@@ -68,23 +68,23 @@ function validateInputs() {
     $(`[name="gender"]`).removeClass('text-red-500')
 
     if ($(`[name="username"]`).val().trim() === "") {
-        $(`[name="username"]`).addClass('border-red-500')
+        $(`[name="username"]`).addClass('border border-red-500')
         $("[name='username'] + .error-text").addClass('opacity-100')
         $("[for='username']").addClass('text-red-500')
     }
     if ($(`[name="password"]`).val().trim() === "") {
-        $(`[name="password"]`).addClass('border-red-500')
+        $(`[name="password"]`).addClass('border border-red-500')
         $("[name='password'] + .error-text").addClass('opacity-100')
         $("[for='password']").addClass('text-red-500')
     }
     if ($(`[name="email"]`).val().trim() === "") {
-        $(`[name="email"]`).addClass('border-red-500')
+        $(`[name="email"]`).addClass('border border-red-500')
         $("[name='email'] + .error-text").addClass('opacity-100')
         $("[for='email']").addClass('text-red-500')
     }
     if ($(`[name="gender"]`).val().trim() === "") {
         $(`[name="gender"]`).addClass('text-red-500')
-        $(`[name="gender"]`).addClass('border-red-500')
+        $(`[name="gender"]`).addClass('border border-red-500')
     }
 
 

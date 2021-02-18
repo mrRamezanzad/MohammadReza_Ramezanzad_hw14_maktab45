@@ -46,20 +46,20 @@ function getInputs() {
 }
 
 function validateInputs() {
-    $("#username-value").removeClass('border border-red-500')
-    $("#password-value").removeClass('border border-red-500')
+    $("#username-value").removeClass('border-red-500')
+    $("#password-value").removeClass('border-red-500')
     $(".error-text").removeClass('opacity-100')
     $(".error-text").removeClass('opacity-100')
     $("[for='username']").removeClass('text-red-500')
     $("[for='password']").removeClass('text-red-500')
 
     if ($("#username-value").val().trim() === "") {
-        $("#username-value").addClass('border border-red-500')
+        $("#username-value").addClass('border-red-500')
         $("[id='username-value'] + .error-text").addClass('opacity-100')
         $("[for='username']").addClass('text-red-500')
     }
     if ($("#password-value").val().trim() === "") {
-        $("#password-value").addClass('border border-red-500')
+        $("#password-value").addClass('border-red-500')
         $("[id='password-value'] + .error-text").addClass('opacity-100')
         $("[for='password']").addClass('text-red-500')
     }
