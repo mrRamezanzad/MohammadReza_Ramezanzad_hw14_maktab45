@@ -104,6 +104,7 @@ function isLoggedIn(user) {
 
 // logout 
 router.post("/logout/:id", (req, res) => {
+    logoutUser(req.params.id)
     res.status(200).json({
         "msg": `به امید دیدار!`
     })
